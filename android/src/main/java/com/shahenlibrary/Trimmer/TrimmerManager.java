@@ -101,7 +101,7 @@ public class TrimmerManager extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void merge(ReadableArray videoFiles, String cmd, Promise promise) {
+  public void merge(String[] videoFiles, String cmd, Promise promise) {
     Log.d(REACT_PACKAGE, "Sending command: " + cmd);
     Trimmer.merge(videoFiles, cmd, promise, reactContext);
   }
