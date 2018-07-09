@@ -739,9 +739,31 @@ public class Trimmer {
     executeFfmpegCommand(cmd, tempFile.getPath(), ctx, promise, "Reverse error", null);
   }
 
-  static void merge(String source, String second, final Promise promise, ReactApplicationContext ctx) {
+  static void merge(String cmdString, final Promise promise, ReactApplicationContext ctx) {
+    String source = options.getString("source");
+    String startTime = options.getString("startTime");
+    String endTime = options.getString("endTime");
     final File tempFile = createTempFile("mp4", promise, ctx);
-    Log.d(LOG_TAG, "Placeholder ofr merging!");
+
+    Log.d(LOG_TAG, "Merging in progress.");
+
+    ArrayList<String> cmd = new ArrayList<String>();
+    cmd.add("-y"); // NOTE: OVERWRITE OUTPUT FILE
+
+    // FIXME: Rewrite to build FFMPEG string on Java side. This is for testing only.
+    cmd.add(cmdString);
+
+    cmd.add("-preset");
+    cmd.add("ultrafast");
+
+    cmd.add("copy");
+    // NOTE: FLAG TO CONVER "AAC" AUDIO CODEC
+    cmd.add("-strict");
+    cmd.add("-2");
+    // NOTE: OUTPUT FILE
+    cmd.add(tempFile.getPath());
+
+    executeFfmpegCommand(cmd, tempFile.getPath(), ctx, promise, "Merge error", null);
   }
 
   static private Void executeFfmpegCommand(@NonNull ArrayList<String> cmd, @NonNull final String pathToProcessingFile, @NonNull ReactApplicationContext ctx, @NonNull final Promise promise, @NonNull final String errorMessageTitle, @Nullable final OnCompressVideoListener cb) {
