@@ -755,7 +755,7 @@ public class Trimmer {
     // FIXME: Rewrite to build FFMPEG string on Java side. This is for testing only.
     for (int i = 0; i < videoFiles.size(); i++) {
       cmd.add("-i");
-      cmd.add(videoFiles[i]);
+      cmd.add(videoFiles.getString(i));
     }
 
     cmd.add("-filter_complex");
