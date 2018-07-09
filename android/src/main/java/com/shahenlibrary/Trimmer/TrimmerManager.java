@@ -104,7 +104,7 @@ public class TrimmerManager extends ReactContextBaseJavaModule {
   public void merge(String path, String second, Promise promise) {
     Log.d(REACT_PACKAGE, "reverse video: " + path);
     Log.d(REACT_PACKAGE, "reverse video: " + second);
-    Trimmer.merge(path, promise, reactContext);
+    Trimmer.merge(path, second, promise, reactContext);
   }
 
   @ReactMethod
