@@ -740,9 +740,6 @@ public class Trimmer {
   }
 
   static void merge(String cmdString, final Promise promise, ReactApplicationContext ctx) {
-    String source = options.getString("source");
-    String startTime = options.getString("startTime");
-    String endTime = options.getString("endTime");
     final File tempFile = createTempFile("mp4", promise, ctx);
 
     Log.d(LOG_TAG, "Merging in progress.");
