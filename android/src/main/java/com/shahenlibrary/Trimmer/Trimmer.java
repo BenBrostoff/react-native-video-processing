@@ -707,8 +707,8 @@ public class Trimmer {
     // NOTE: OUTPUT FILE
     cmd.add(tempFile.getPath());
 
-    for (int i = 0; i < cmdString.size(); i++) {
-      Log.d(LOG_TAG, cmdString.get(i));
+    for (int i = 0; i < cmd.size(); i++) {
+      Log.d(LOG_TAG, cmd.get(i));
     }
 
     executeFfmpegCommand(cmd, tempFile.getPath(), ctx, promise, "Boomerang error", null);
@@ -743,7 +743,7 @@ public class Trimmer {
     executeFfmpegCommand(cmd, tempFile.getPath(), ctx, promise, "Reverse error", null);
   }
 
-  static void merge(ReadableArray videoFiles, String concatCmd, final Promise promise, ReactApplicationContext ctx) {
+  static void merge(String[] videoFiles, String concatCmd, final Promise promise, ReactApplicationContext ctx) {
     final File tempFile = createTempFile("mp4", promise, ctx);
 
     Log.d(LOG_TAG, "Merging in progress.");
@@ -752,9 +752,9 @@ public class Trimmer {
     cmd.add("-y"); // NOTE: OVERWRITE OUTPUT FILE
 
     // FIXME: Rewrite to build FFMPEG string on Java side. This is for testing only.
-    for (int i = 0; i < videoFiles.size(); i++) {
+    for (int i = 0; i < videoFiles.length; i++) {
       cmd.add("-i");
-      cmd.add(videoFiles.getString(i));
+      cmd.add(videoFiles[i]);
     }
 
     cmd.add("-filter_complex");
@@ -773,8 +773,8 @@ public class Trimmer {
     // NOTE: OUTPUT FILE
     cmd.add(tempFile.getPath());
 
-    for (int i = 0; i < cmdString.size(); i++) {
-      Log.d(LOG_TAG, cmdString.get(i));
+    for (int i = 0; i < cmd.size(); i++) {
+      Log.d(LOG_TAG, cmd.get(i));
     }
 
     executeFfmpegCommand(cmd, tempFile.getPath(), ctx, promise, "Merge error", null);
