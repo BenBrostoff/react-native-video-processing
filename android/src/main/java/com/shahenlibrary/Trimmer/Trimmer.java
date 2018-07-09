@@ -34,6 +34,7 @@ import android.os.Build;
 import android.util.Base64;
 import android.util.Log;
 
+import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -743,7 +744,7 @@ public class Trimmer {
     executeFfmpegCommand(cmd, tempFile.getPath(), ctx, promise, "Reverse error", null);
   }
 
-  static void merge(String[] videoFiles, String concatCmd, final Promise promise, ReactApplicationContext ctx) {
+  static void merge(ReadableArray videoFiles, String concatCmd, final Promise promise, ReactApplicationContext ctx) {
     final File tempFile = createTempFile("mp4", promise, ctx);
 
     Log.d(LOG_TAG, "Merging in progress.");
@@ -752,7 +753,7 @@ public class Trimmer {
     cmd.add("-y"); // NOTE: OVERWRITE OUTPUT FILE
 
     // FIXME: Rewrite to build FFMPEG string on Java side. This is for testing only.
-    for (int i = 0; i < videoFiles.length; i++) {
+    for (int i = 0; i < videoFiles.size(); i++) {
       cmd.add("-i");
       cmd.add(videoFiles[i]);
     }
