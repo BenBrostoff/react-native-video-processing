@@ -758,7 +758,7 @@ public class Trimmer {
       cmd.add(videoFiles.getString(i));
     }
 
-    if (concatCmd != "NO_ENCODE") {
+    if (!concatCmd.equals("NO_ENCODE")) {
       Log.d(LOG_TAG, "Using complex filter..");
 
       cmd.add("-filter_complex");
@@ -773,7 +773,7 @@ public class Trimmer {
 
 
     // Optionally do not convert video
-    if (concatCmd == "NO_ENCODE") {
+    if (concatCmd.equals("NO_ENCODE")) {
       Log.d(LOG_TAG, "Not adding encoding - copying codecs...");
 
       // https://superuser.com/questions/835048/difference-between-cv-and-vcodec-and-ca-and-acodec
