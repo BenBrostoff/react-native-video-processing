@@ -758,8 +758,12 @@ public class Trimmer {
       cmd.add(videoFiles.getString(i));
     }
 
-    cmd.add("-filter_complex");
-    cmd.add(concatCmd);
+    if (concatCmd != "NO_ENCODE") {
+      Log.d(LOG_TAG, "Using complex filter..");
+
+      cmd.add("-filter_complex");
+      cmd.add(concatCmd);
+    }
 
     cmd.add("-map");
     cmd.add("[v]");
@@ -767,10 +771,21 @@ public class Trimmer {
     cmd.add("-preset");
     cmd.add("ultrafast");
 
+
+    // Optionally do not convert video
+    if (concatCmd == "NO_ENCODE") {
+      Log.d(LOG_TAG, "Not adding encoding - copying codecs...");
+
+      // https://superuser.com/questions/835048/difference-between-cv-and-vcodec-and-ca-and-acodec
+      cmd.add("-c:v");
+      cmd.add("copy");
+    }
+
+
     // NOTE: DO NOT CONVERT AUDIO TO SAVE TIME
     cmd.add("-c:a");
-
     cmd.add("copy");
+
     // NOTE: OUTPUT FILE
     cmd.add(tempFile.getPath());
 
