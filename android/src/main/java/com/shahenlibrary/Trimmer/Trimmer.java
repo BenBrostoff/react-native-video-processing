@@ -763,10 +763,10 @@ public class Trimmer {
 
       cmd.add("-filter_complex");
       cmd.add(concatCmd);
-    }
 
-    cmd.add("-map");
-    cmd.add("[v]");
+      cmd.add("-map");
+      cmd.add("[v]");
+    }
 
     cmd.add("-preset");
     cmd.add("ultrafast");
