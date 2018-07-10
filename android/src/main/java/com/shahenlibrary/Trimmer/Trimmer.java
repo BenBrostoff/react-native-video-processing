@@ -767,6 +767,9 @@ public class Trimmer {
     cmd.add("-preset");
     cmd.add("ultrafast");
 
+    // NOTE: DO NOT CONVERT AUDIO TO SAVE TIME
+    cmd.add("-c:a");
+
     cmd.add("copy");
     // NOTE: FLAG TO CONVER "AAC" AUDIO CODEC
     cmd.add("-strict");
@@ -777,6 +780,8 @@ public class Trimmer {
     for (int i = 0; i < cmd.size(); i++) {
       Log.d(LOG_TAG, cmd.get(i));
     }
+
+    Log.d(LOG_TAG, "Wrote arguments, piping to FFMPEG.");
 
     executeFfmpegCommand(cmd, tempFile.getPath(), ctx, promise, "Merge error", null);
   }
