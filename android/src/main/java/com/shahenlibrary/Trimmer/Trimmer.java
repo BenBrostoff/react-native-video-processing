@@ -771,9 +771,6 @@ public class Trimmer {
     cmd.add("-c:a");
 
     cmd.add("copy");
-    // NOTE: FLAG TO CONVER "AAC" AUDIO CODEC
-    cmd.add("-strict");
-    cmd.add("-2");
     // NOTE: OUTPUT FILE
     cmd.add(tempFile.getPath());
 
