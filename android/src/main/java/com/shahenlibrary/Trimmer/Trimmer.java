@@ -796,6 +796,8 @@ public class Trimmer {
     cmd.add("-level");
     cmd.add("3.0");
 
+    Log.d(LOG_TAG, "Using recommended ending options from Android (MERGE)");
+
     // Optionally do not convert video
     if (concatCmd.equals("NO_ENCODE")) {
       Log.d(LOG_TAG, "Not adding encoding - copying codecs...");
