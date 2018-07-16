@@ -395,7 +395,7 @@ public class Trimmer {
     cmd.add("3.0");
 
     cmd.add("-vf");
-    cmd.add("scale:1280:720");
+    cmd.add("scale=1280:720");
 
     Log.d(LOG_TAG, "Using recommended ending options from Android (TRIM)");
 
@@ -802,7 +802,7 @@ public class Trimmer {
     cmd.add("3.0");
 
     cmd.add("-vf");
-    cmd.add("scale:1280:720");
+    cmd.add("scale=1280:720");
 
     Log.d(LOG_TAG, "Using recommended ending options from Android (MERGE)");
 
