@@ -395,7 +395,7 @@ public class Trimmer {
     cmd.add("3.0");
 
     cmd.add("-vf");
-    cmd.add("scale=1280:720");
+    cmd.add("scale=w=1280:h=720:force_original_aspect_ratio=1,pad=1280:720:(ow-iw)/2:(oh-ih)/2");
 
     Log.d(LOG_TAG, "Using recommended ending options from Android (TRIM)");
 
@@ -775,15 +775,26 @@ public class Trimmer {
       Log.d(LOG_TAG, "Using complex filter..");
 
       cmd.add("-filter_complex");
+
+      // this should include scaling and pipe to v2
       cmd.add(concatCmd);
 
       cmd.add("-map");
-      cmd.add("[v]");
+      cmd.add("[v2]");
+
+      cmd.add("-map");
+      cmd.add("[a]");
     }
 
     cmd.add("-preset");
     cmd.add("ultrafast");
 
+    // These options are recommended by https://developer.android.com/guide/topics/media/media-formats
+    cmd.add("-profile:v");
+    cmd.add("baseline");
+
+    cmd.add("-level");
+    cmd.add("3.0");
 
     // Optionally do not convert video
     if (concatCmd.equals("NO_ENCODE")) {
@@ -793,22 +804,6 @@ public class Trimmer {
       cmd.add("-c:v");
       cmd.add("copy");
     }
-
-    // These options are recommended by https://developer.android.com/guide/topics/media/media-formats
-    cmd.add("-profile:v");
-    cmd.add("baseline");
-
-    cmd.add("-level");
-    cmd.add("3.0");
-
-    cmd.add("-vf");
-    cmd.add("scale=1280:720");
-
-    Log.d(LOG_TAG, "Using recommended ending options from Android (MERGE)");
-
-    // NOTE: DO NOT CONVERT AUDIO TO SAVE TIME
-    cmd.add("-c:a");
-    cmd.add("copy");
 
     // NOTE: OUTPUT FILE
     cmd.add(tempFile.getPath());
