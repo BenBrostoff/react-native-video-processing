@@ -776,11 +776,11 @@ public class Trimmer {
 
       cmd.add("-filter_complex");
 
-      // this should include scaling and pipe to v2
+      // this command should include any necessary scaling
       cmd.add(concatCmd);
 
       cmd.add("-map");
-      cmd.add("[v2]");
+      cmd.add("[v]");
 
       cmd.add("-map");
       cmd.add("[a]");
