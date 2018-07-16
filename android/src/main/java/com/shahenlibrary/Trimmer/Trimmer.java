@@ -386,6 +386,10 @@ public class Trimmer {
 
     cmd.add("-preset");
     cmd.add("ultrafast");
+
+    cmd.add("-profile:v")
+    cmd.add("baseline")
+
     // NOTE: DO NOT CONVERT AUDIO TO SAVE TIME
     cmd.add("-c:a");
     cmd.add("copy");
@@ -781,6 +785,8 @@ public class Trimmer {
       cmd.add("copy");
     }
 
+    cmd.add("-profile:v")
+    cmd.add("baseline")
 
     // NOTE: DO NOT CONVERT AUDIO TO SAVE TIME
     cmd.add("-c:a");
