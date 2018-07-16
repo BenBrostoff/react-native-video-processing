@@ -387,8 +387,17 @@ public class Trimmer {
     cmd.add("-preset");
     cmd.add("ultrafast");
 
-    cmd.add("-profile:v")
-    cmd.add("baseline")
+    // These options are recommended by https://developer.android.com/guide/topics/media/media-formats
+    cmd.add("-profile:v");
+    cmd.add("baseline");
+
+    cmd.add("-level");
+    cmd.add("3.0");
+
+    cmd.add("-vf")
+    cmd.add("scale:1280:720")
+
+    Log.d(LOG_TAG, "Using recommended ending options from Android (TRIM)");
 
     // NOTE: DO NOT CONVERT AUDIO TO SAVE TIME
     cmd.add("-c:a");
@@ -785,8 +794,17 @@ public class Trimmer {
       cmd.add("copy");
     }
 
-    cmd.add("-profile:v")
-    cmd.add("baseline")
+    // These options are recommended by https://developer.android.com/guide/topics/media/media-formats
+    cmd.add("-profile:v");
+    cmd.add("baseline");
+
+    cmd.add("-level");
+    cmd.add("3.0");
+
+    cmd.add("-vf")
+    cmd.add("scale:1280:720")
+
+    Log.d(LOG_TAG, "Using recommended ending options from Android (MERGE)");
 
     // NOTE: DO NOT CONVERT AUDIO TO SAVE TIME
     cmd.add("-c:a");
